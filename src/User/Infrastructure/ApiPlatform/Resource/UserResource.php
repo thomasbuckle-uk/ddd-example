@@ -9,7 +9,9 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\User\Domain\Model\User;
+use App\User\Infrastructure\ApiPlatform\State\Processor\CreateUserProcessor;
 use App\User\Infrastructure\ApiPlatform\State\Provider\UserCollectionProvider;
 use App\User\Infrastructure\ApiPlatform\State\Provider\UserItemProvider;
 use Symfony\Component\Uid\AbstractUid;
@@ -28,6 +30,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     ),
     new Get(
         provider: UserItemProvider::class,
+    ),
+    new Post(
+        processor: CreateUserProcessor::class
     )
 
 ]
