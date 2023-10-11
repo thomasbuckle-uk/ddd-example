@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 #[Embeddable]
 final readonly class Password
 {
-    #[Column(length: 255)]
+    #[Column(name: 'password', length: 255)]
     public readonly string $value;
 
     public function __construct(string $value)

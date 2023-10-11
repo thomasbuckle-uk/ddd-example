@@ -17,7 +17,8 @@ use App\User\Infrastructure\ApiPlatform\State\Provider\UserItemProvider;
 use Symfony\Component\Uid\AbstractUid;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
-    shortName: 'User', operations: [
+    shortName: 'User',
+    operations: [
     // Queries
 
 
@@ -48,7 +49,6 @@ final class UserResource
         public ?string $username = null,
 
         #[Assert\NotNull(groups: ['create'])]
-        #[Assert\Email]
         #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
         public ?string $email = null,
 
@@ -59,7 +59,7 @@ final class UserResource
 //
 //        TODO Implement roles here
 
-//        #[Assert\AtLeastOneOf()]
+        #[Assert\NotNull(groups: ['create'])]
         public ?array $roles = []
 
     ){}
@@ -70,7 +70,8 @@ final class UserResource
             $user->id()->value,
             $user->username()->value,
             $user->email()->value,
-            $user->password()->value
+            $user->password()->value,
+            $user->roles()
         );
     }
 }

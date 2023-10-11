@@ -20,7 +20,7 @@ class User
     use TimestampableEntity;
     use SoftDeleteableEntity;
 
-    #[ORM\Embedded(columnPrefix: false)]
+    #[ORM\Embedded(class: UserId::class, columnPrefix: false)]
     private readonly UserId $id;
 
     #[ORM\Column]
@@ -28,17 +28,16 @@ class User
 
     public function __construct(
 
-        #[ORM\Embedded(columnPrefix: false)]
+        #[ORM\Embedded(class: Email::class,columnPrefix: false)]
         private Email        $email,
 //
 //        #[ORM\Embedded(columnPrefix: false)]
 //        private UserRoles    $roles,
 
-        #[ORM\Embedded(columnPrefix: false)]
+        #[ORM\Embedded(class: Password::class,columnPrefix: false)]
         private Password     $password,
 
-
-        #[ORM\Embedded(columnPrefix: false)]
+        #[ORM\Embedded(class: UserUsername::class,columnPrefix: false)]
         private UserUsername $username,
     )
     {

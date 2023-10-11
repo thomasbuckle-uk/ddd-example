@@ -7,7 +7,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class UserRoles
 {
-    #[Column(length: 255)]
+    #[Column(name:'roles',length: 255)]
     public array $value;
 
     public function __construct(array $value)
