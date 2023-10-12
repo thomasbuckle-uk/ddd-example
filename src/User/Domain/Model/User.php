@@ -14,7 +14,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 
 #[ORM\Entity]
-#[ORM\Table('"user"')]
+#[ORM\Table('"user"')] //Using a reserved keyword here for PostgresSQL so we need to escape it using ""
 class User
 {
 
