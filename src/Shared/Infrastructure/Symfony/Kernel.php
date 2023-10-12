@@ -20,7 +20,10 @@ final class Kernel extends BaseKernel
     {
         $container->import(sprintf('%s/config/{packages}/*.php', $this->getProjectDir()));
         $container->import(sprintf('%s/config/{packages}/%s/*.php', $this->getProjectDir(), (string) $this->environment));
+        $container->import(sprintf('%s/config/{packages}/*.yaml', $this->getProjectDir()));
+        $container->import(sprintf('%s/config/{packages}/%s/*.yaml', $this->getProjectDir(), (string) $this->environment));
 
+        $container->import(sprintf('%s/config/services.yaml', $this->getProjectDir()));
         $container->import(sprintf('%s/config/{services}/*.php', $this->getProjectDir()));
         $container->import(sprintf('%s/config/{services}/%s/*.php', $this->getProjectDir(), (string) $this->environment));
     }

@@ -16,7 +16,7 @@ final readonly class UserCollectionProvider implements ProviderInterface
 
     public function __construct(
         private QueryBusInterface $queryBus,
-        private Pagination $pagination,
+        private Pagination        $pagination,
     )
     {
     }
@@ -26,6 +26,7 @@ final readonly class UserCollectionProvider implements ProviderInterface
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): Paginator|array
     {
+
         $offset = $limit = null;
 
         if ($this->pagination->isEnabled($operation, $context)) {
@@ -33,10 +34,25 @@ final readonly class UserCollectionProvider implements ProviderInterface
             $limit = $this->pagination->getLimit($operation, $context);
         }
 
-        /** @var UserRepositoryInterface $models*/
-        $models = $this->queryBus->ask(new FindUsersQuery($offset, $limit));
+        /** @var UserRepositoryInterface $models */
+        $models = $this->queryBus->ask(new FindUsersQuery(1, 5));
+        $resources = [];
 
-        $resource = [];
+        foreach ($models as $model) {
+            $resources[] = UserResource::fromModel($model);
+        }
+
+        if (null !== $paginator = $models->paginator()) {
+            $resources = new Paginator(
+                new \ArrayIterator($resources),
+                (float)$paginator->getCurrentPage(),
+                (float)$paginator->getItemsPerPage(),
+                (float)$paginator->getLastPage(),
+                (float)$paginator->getTotalItems(),
+            );
+        }
+
+        return $resources;
 
     }
 }

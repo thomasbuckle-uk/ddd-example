@@ -7,6 +7,10 @@ namespace App\User\Application\Query;
 use App\Shared\Application\Query\QueryHandlerInterface;
 use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+
+#[AsMessageHandler]
 
 final readonly class FindUserQueryHandler implements QueryHandlerInterface
 {

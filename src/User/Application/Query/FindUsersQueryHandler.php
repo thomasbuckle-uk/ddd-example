@@ -6,6 +6,10 @@ namespace App\User\Application\Query;
 
 use App\Shared\Application\Query\QueryHandlerInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+
+#[AsMessageHandler]
 
 final readonly class FindUsersQueryHandler implements QueryHandlerInterface
 {
@@ -19,7 +23,9 @@ final readonly class FindUsersQueryHandler implements QueryHandlerInterface
         $userRepository = $this->userRepository;
 
         if (null !== $query->page && null !== $query->itemsPerPage) {
+
             $userRepository = $userRepository->withPagination($query->page, $query->itemsPerPage);
+
         }
 
         return $userRepository;

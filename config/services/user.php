@@ -17,7 +17,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autowire()
         ->autoconfigure();
 
-    $services->load('App\\User', dirname(__DIR__, 2) . '/src/User');
+    $services->load('App\\User\\', dirname(__DIR__, 2) . '/src/User');
 
     //processors
     $services->set(CreateUserProcessor::class)
