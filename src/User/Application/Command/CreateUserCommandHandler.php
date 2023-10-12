@@ -7,7 +7,10 @@ namespace App\User\Application\Command;
 use App\Shared\Application\Command\CommandHandlerInterface;
 use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+#[AsMessageHandler]
 final readonly class CreateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(

@@ -35,7 +35,7 @@ final readonly class UserCollectionProvider implements ProviderInterface
         }
 
         /** @var UserRepositoryInterface $models */
-        $models = $this->queryBus->ask(new FindUsersQuery(1, 5));
+        $models = $this->queryBus->ask(new FindUsersQuery($offset, $limit));
         $resources = [];
 
         foreach ($models as $model) {

@@ -8,7 +8,10 @@ use App\Shared\Application\Command\CommandHandlerInterface;
 use App\User\Domain\Exception\MissingUserException;
 use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+
+#[AsMessageHandler]
 final readonly class UpdateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(private UserRepositoryInterface $userRepository)
