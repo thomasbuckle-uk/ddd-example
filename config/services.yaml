@@ -3,7 +3,6 @@
 imports:
     - { resource: 'services/user.php' }
     - { resource: 'services/shared.php' }
-    - { resource: 'services/test/user.php' }
 services:
     # default configuration for services in *this* file
     _defaults:

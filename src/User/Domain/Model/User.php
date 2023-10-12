@@ -14,8 +14,10 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 
 #[ORM\Entity]
+#[ORM\Table('"user"')]
 class User
 {
+
 
     use TimestampableEntity;
     use SoftDeleteableEntity;
