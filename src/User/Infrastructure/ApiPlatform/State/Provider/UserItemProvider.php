@@ -30,7 +30,7 @@ final readonly class UserItemProvider implements ProviderInterface
         $id = $uriVariables['id'];
 
         /** @var User|null $model */
-        $model = $this->queryBus->ask(new FindUserQuery(new UserId(Uuid::fromString('id'))));
+        $model = $this->queryBus->ask(new FindUserQuery(new UserId(Uuid::fromString($id))));
 
         return null !== $model ? UserResource::fromModel($model) : null;
     }
