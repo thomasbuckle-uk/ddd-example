@@ -37,7 +37,7 @@ final class DoctrineUserRepository extends DoctrineRepository implements UserRep
 
     public function remove(User $user): void
     {
-        $this->em->persist($user);
+        $this->em->remove($user);
         $this->em->flush();
     }
 
