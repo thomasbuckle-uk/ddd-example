@@ -42,8 +42,10 @@ class DoctrineUserRepositoryTest extends KernelTestCase
      */
     protected function setUp(): void
     {
+        dump('truncating data');
         static::$connection->executeStatement('TRUNCATE "user"');
     }
+
 
     /**
      * @throws \Exception
@@ -88,12 +90,12 @@ class DoctrineUserRepositoryTest extends KernelTestCase
 
         static::assertEmpty($repository);
 
-        $book = DummyUserFactory::createUser();
-        $repository->save($book);
+        $user = DummyUserFactory::createUser();
+        $repository->save($user);
 
         static::getContainer()->get(EntityManagerInterface::class)->clear();
 
-        static::assertEquals($book, $repository->ofId($book->id()));
+        static::assertEquals($user, $repository->ofId($user->id()));
     }
 
     public function testWithPagination(): void
@@ -118,6 +120,9 @@ class DoctrineUserRepositoryTest extends KernelTestCase
         static::assertNull($repository->paginator());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testIteratorWithoutPagination(): void
     {
         /** @var DoctrineUserRepository $repository */
@@ -125,9 +130,9 @@ class DoctrineUserRepositoryTest extends KernelTestCase
         static::assertNull($repository->paginator());
 
         $users = [
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser('user1','user1@me.com'),
+            DummyUserFactory::createUser('user2','user2@me.com'),
+            DummyUserFactory::createUser('user3','user3@me.com'),
         ];
         foreach ($users as $user) {
             $repository->save($user);
@@ -150,9 +155,9 @@ class DoctrineUserRepositoryTest extends KernelTestCase
         static::assertNull($repository->paginator());
 
         $users = [
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser('user1','user1@me.com'),
+            DummyUserFactory::createUser('user2','user2@me.com'),
+            DummyUserFactory::createUser('user3','user3@me.com'),
         ];
 
         foreach ($users as $user) {
@@ -186,9 +191,9 @@ class DoctrineUserRepositoryTest extends KernelTestCase
         $repository = static::getContainer()->get(DoctrineUserRepository::class);
 
         $users = [
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
-            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser('user1','user1@me.com'),
+            DummyUserFactory::createUser('user2','user2@me.com'),
+            DummyUserFactory::createUser('user3','user3@me.com'),
         ];
         foreach ($users as $user) {
             $repository->save($user);
