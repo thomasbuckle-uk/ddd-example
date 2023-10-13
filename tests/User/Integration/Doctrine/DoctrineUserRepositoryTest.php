@@ -2,9 +2,9 @@
 
 namespace App\Tests\User\Integration\Doctrine;
 
+use App\Shared\Infrastructure\Doctrine\DoctrinePaginator;
 use App\Tests\User\DummyFactory\DummyUserFactory;
 use App\User\Infrastructure\Doctrine\DoctrineUserRepository;
-use App\Shared\Infrastructure\Doctrine\DoctrinePaginator;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
@@ -60,4 +60,142 @@ class DoctrineUserRepositoryTest extends KernelTestCase
 
         static::assertCount(1, $repository);
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testRemove(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+
+        $user = DummyUserFactory::createUser();
+        $repository->save($user);
+
+        static::assertCount(1, $repository);
+
+        $repository->remove($user);
+        static::assertEmpty($repository);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testOfId(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+
+        static::assertEmpty($repository);
+
+        $book = DummyUserFactory::createUser();
+        $repository->save($book);
+
+        static::getContainer()->get(EntityManagerInterface::class)->clear();
+
+        static::assertEquals($book, $repository->ofId($book->id()));
+    }
+
+    public function testWithPagination(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+        static::assertNull($repository->paginator());
+
+        $repository = $repository->withPagination(1, 2);
+
+        static::assertInstanceOf(DoctrinePaginator::class, $repository->paginator());
+    }
+
+    public function testWithoutPagination(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+        $repository = $repository->withPagination(1, 2);
+        static::assertNotNull($repository->paginator());
+
+        $repository = $repository->withoutPagination();
+        static::assertNull($repository->paginator());
+    }
+
+    public function testIteratorWithoutPagination(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+        static::assertNull($repository->paginator());
+
+        $users = [
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+        ];
+        foreach ($users as $user) {
+            $repository->save($user);
+        }
+
+        $i = 0;
+        foreach ($repository as $user) {
+            static::assertSame($users[$i], $user);
+            ++$i;
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testIteratorWithPagination(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+        static::assertNull($repository->paginator());
+
+        $users = [
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+        ];
+
+        foreach ($users as $user) {
+            $repository->save($user);
+        }
+
+        $repository = $repository->withPagination(1, 2);
+
+        $i = 0;
+        foreach ($repository as $user) {
+            static::assertContains($user, $users);
+            ++$i;
+        }
+
+        static::assertSame(2, $i);
+
+        $repository = $repository->withPagination(2, 2);
+
+        $i = 0;
+        foreach ($repository as $user) {
+            static::assertContains($user, $users);
+            ++$i;
+        }
+
+        static::assertSame(1, $i);
+    }
+
+    public function testCount(): void
+    {
+        /** @var DoctrineUserRepository $repository */
+        $repository = static::getContainer()->get(DoctrineUserRepository::class);
+
+        $users = [
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+            DummyUserFactory::createUser(),
+        ];
+        foreach ($users as $user) {
+            $repository->save($user);
+        }
+
+        static::assertCount(count($users), $repository);
+        static::assertCount(2, $repository->withPagination(1, 2));
+    }
+
 }
