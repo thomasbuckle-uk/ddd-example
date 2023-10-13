@@ -21,3 +21,23 @@
 
 
 
+---
+
+## Investigation of Tooling
+
+### Psalm
+
+Psalm is great for ensuring type safety across our code base
+
+### PHPUnit
+
+Standard Testing Library in the PHP world, perhaps investigating the use of Pest PHP may be an option?
+
+### PHP CS Fixer 
+
+A great static analysis library for catching code smells and giving us stats like Cylcomatic Complexity in our code
+
+### Deptrac
+
+A tool I'm really excited to test out as it allows us to apply static analysis to the _architecture_ of our code
+
