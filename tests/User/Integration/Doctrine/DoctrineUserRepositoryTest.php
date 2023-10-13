@@ -93,8 +93,6 @@ class DoctrineUserRepositoryTest extends KernelTestCase
         $user = DummyUserFactory::createUser();
         $repository->save($user);
 
-        static::getContainer()->get(EntityManagerInterface::class)->clear();
-
         static::assertEquals($user, $repository->ofId($user->id()));
     }
 
