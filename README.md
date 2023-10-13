@@ -19,6 +19,16 @@
 - Update schema using `bin/console doctrine:schema:update --force -nq`
 
 
+## _WIP_ - Using Make to manage project
+
+- Currently having issues getting TLS/HTTPS working with Caddy + WSL2 + Windows, this may work on MacOS as is
+
+- Install the `make` tool https://www.gnu.org/software/make/
+- MacOS should be `bew install make`
+
+- `make install`
+- `make help` to view all commands such as linters, ci, db management etc
+
 
 
 ---
