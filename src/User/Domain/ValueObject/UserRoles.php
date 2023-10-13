@@ -3,8 +3,11 @@
 namespace App\User\Domain\ValueObject;
 
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Embeddable;
 use Webmozart\Assert\Assert;
 
+
+#[Embeddable]
 final readonly class UserRoles
 {
     #[Column(name:'roles',length: 255)]
