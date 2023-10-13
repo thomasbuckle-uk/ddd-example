@@ -20,8 +20,7 @@ final readonly class UserItemProvider implements ProviderInterface
 {
     public function __construct(
         private QueryBusInterface $queryBus,
-    )
-    {
+    ) {
     }
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): ?UserResource

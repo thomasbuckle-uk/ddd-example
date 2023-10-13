@@ -129,8 +129,21 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dom-crawler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/phpunit-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/amphp/amp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/amphp/byte-stream" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/advanced-json-rpc" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/felixfbecker/language-server-protocol" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fidry/cpu-core-counter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/netresearch/jsonmapper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/qossmic/deptrac-shim" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/array-to-xml" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-client-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vimeo/psalm" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

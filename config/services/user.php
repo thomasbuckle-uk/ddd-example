@@ -12,16 +12,15 @@ use App\User\Infrastructure\Doctrine\DoctrineUserRepository;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-
     $services = $containerConfigurator->services();
 
     $services->defaults()
         ->autowire()
         ->autoconfigure();
 
-    $services->load('App\\User\\', dirname(__DIR__, 2) . '/src/User');
+    $services->load('App\\User\\', dirname(__DIR__, 2).'/src/User');
 
-    //processors
+    // processors
     $services->set(CreateUserProcessor::class)
         ->autoconfigure(false)
         ->tag('api_platform.state_processor', ['priority' => 0]);
@@ -32,14 +31,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure(false)
         ->tag('api_platform.state_processor', ['priority' => 0]);
 
-    //providers
+    // providers
     $services->set(UserItemProvider::class)
         ->autoconfigure(false)
         ->tag('api_platform.state_provider', ['priority' => 0]);
     $services->set(UserCollectionProvider::class)
         ->autoconfigure(false)
         ->tag('api_platform.state_provider', ['priority' => 0]);
-
 
     // repositories
     $services->set(UserRepositoryInterface::class)

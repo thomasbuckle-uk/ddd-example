@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\User\Infrastructure\ApiPlatform\State\Provider;
 
 use ApiPlatform\Metadata\Operation;
@@ -13,12 +15,10 @@ use App\User\Infrastructure\ApiPlatform\Resource\UserResource;
 
 final readonly class UserCollectionProvider implements ProviderInterface
 {
-
     public function __construct(
         private QueryBusInterface $queryBus,
-        private Pagination        $pagination,
-    )
-    {
+        private Pagination $pagination,
+    ) {
     }
 
     /**
@@ -26,7 +26,6 @@ final readonly class UserCollectionProvider implements ProviderInterface
      */
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): Paginator|array
     {
-
         $offset = $limit = null;
 
         if ($this->pagination->isEnabled($operation, $context)) {
@@ -45,14 +44,13 @@ final readonly class UserCollectionProvider implements ProviderInterface
         if (null !== $paginator = $models->paginator()) {
             $resources = new Paginator(
                 new \ArrayIterator($resources),
-                (float)$paginator->getCurrentPage(),
-                (float)$paginator->getItemsPerPage(),
-                (float)$paginator->getLastPage(),
-                (float)$paginator->getTotalItems(),
+                (float) $paginator->getCurrentPage(),
+                (float) $paginator->getItemsPerPage(),
+                (float) $paginator->getLastPage(),
+                (float) $paginator->getTotalItems(),
             );
         }
 
         return $resources;
-
     }
 }

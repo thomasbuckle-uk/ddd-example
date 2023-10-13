@@ -9,10 +9,8 @@ use App\User\Domain\ValueObject\UserId;
 
 final readonly class FindUserQuery implements QueryInterface
 {
-
     public function __construct(
-        public UserId $id
-    )
-    {
+        public UserId $id,
+    ) {
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\Doctrine;
 
-use App\Shared\Domain\Repository\PaginatorInterface;
 use App\Shared\Infrastructure\Doctrine\DoctrineRepository;
 use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
@@ -12,15 +11,12 @@ use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\UserId;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use Iterator;
-
 
 /**
  * @extends DoctrineRepository<User>
  */
 final class DoctrineUserRepository extends DoctrineRepository implements UserRepositoryInterface
 {
-
     private const ENTITY_CLASS = User::class;
     private const ALIAS = 'user';
 

@@ -6,8 +6,6 @@ namespace App\Shared\Infrastructure\Doctrine;
 
 use App\Shared\Domain\Repository\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Exception;
-use InvalidArgumentException;
 
 /**
  * @template T of object
@@ -29,7 +27,7 @@ final readonly class DoctrinePaginator implements PaginatorInterface
         $maxResults = $paginator->getQuery()->getMaxResults();
 
         if (null === $maxResults) {
-            throw new InvalidArgumentException('Missing maxResults from the query.');
+            throw new \InvalidArgumentException('Missing maxResults from the query.');
         }
 
         $this->firstResult = $firstResult;
@@ -65,7 +63,7 @@ final readonly class DoctrinePaginator implements PaginatorInterface
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function count(): int
     {

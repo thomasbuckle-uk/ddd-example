@@ -20,8 +20,7 @@ final readonly class UpdateUserProcessor implements ProcessorInterface
 {
     public function __construct(
         private CommandBusInterface $commandBus,
-    )
-    {
+    ) {
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
@@ -34,7 +33,7 @@ final readonly class UpdateUserProcessor implements ProcessorInterface
             null !== $data->username ? new UserUsername($data->username) : null,
             null !== $data->email ? new Email($data->email) : null,
             null !== $data->roles ? $data->roles : null,
-            null !== $data->password ? new Password($data->password) : null
+            null !== $data->password ? new Password($data->password) : null,
         );
 
         /** @var User $model */

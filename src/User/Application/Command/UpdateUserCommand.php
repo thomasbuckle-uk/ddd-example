@@ -13,12 +13,11 @@ use App\User\Domain\ValueObject\UserUsername;
 final readonly class UpdateUserCommand implements CommandInterface
 {
     public function __construct(
-        public UserId        $id,
+        public UserId $id,
         public ?UserUsername $username = null,
-        public ?Email        $email = null,
-        public ?array        $roles = null,
-        public ?Password     $password = null,
-    )
-    {
+        public ?Email $email = null,
+        public ?array $roles = null,
+        public ?Password $password = null,
+    ) {
     }
 }

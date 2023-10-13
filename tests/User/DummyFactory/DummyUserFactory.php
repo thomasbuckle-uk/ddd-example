@@ -19,13 +19,12 @@ final class DummyUserFactory
         string $username = 'username',
         string $email = 'email@me.com',
         string $password = 'password',
-        array  $roles = ['ROLE_USER']
-    ): User
-    {
+        array $roles = ['ROLE_USER'],
+    ): User {
         return new User(
             new Email($email),
             new Password($password),
-            new UserUsername($username)
+            new UserUsername($username),
         );
     }
 }

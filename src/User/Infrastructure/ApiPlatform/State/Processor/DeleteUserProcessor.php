@@ -14,11 +14,9 @@ use Webmozart\Assert\Assert;
 
 final readonly class DeleteUserProcessor implements ProcessorInterface
 {
-
     public function __construct(
         private CommandBusInterface $commandBus,
-    )
-    {
+    ) {
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): null

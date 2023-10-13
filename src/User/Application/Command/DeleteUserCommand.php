@@ -9,11 +9,8 @@ use App\User\Domain\ValueObject\UserId;
 
 final readonly class DeleteUserCommand implements CommandInterface
 {
-
     public function __construct(
         public UserId $id,
-    )
-    {
+    ) {
     }
-
 }

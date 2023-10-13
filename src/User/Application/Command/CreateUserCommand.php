@@ -16,7 +16,6 @@ final readonly class CreateUserCommand implements CommandInterface
         public Email $email,
         public Password $password,
         public array $roles,
-    )
-    {
+    ) {
     }
 }

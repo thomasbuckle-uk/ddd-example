@@ -45,5 +45,4 @@ final class CreateUserTest extends KernelTestCase
         static::assertEquals(new Password('password'), $user->password());
         static::assertEquals(['ROLE_USER'], $user->roles());
     }
-
 }

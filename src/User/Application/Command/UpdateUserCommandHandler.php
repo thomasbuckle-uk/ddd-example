@@ -10,7 +10,6 @@ use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-
 #[AsMessageHandler]
 final readonly class UpdateUserCommandHandler implements CommandHandlerInterface
 {
@@ -30,12 +29,11 @@ final readonly class UpdateUserCommandHandler implements CommandHandlerInterface
             email: $command->email,
             password: $command->password,
             roles: $command->roles,
-            username: $command->username
+            username: $command->username,
         );
 
         $this->userRepository->save($user);
 
         return $user;
     }
-
 }

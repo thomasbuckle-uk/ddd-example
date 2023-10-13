@@ -9,12 +9,9 @@ use App\User\Domain\Model\User;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-
 #[AsMessageHandler]
-
 final readonly class FindUserQueryHandler implements QueryHandlerInterface
 {
-
     public function __construct(private UserRepositoryInterface $repository)
     {
     }

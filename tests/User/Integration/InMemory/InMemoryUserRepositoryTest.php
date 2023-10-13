@@ -7,13 +7,12 @@ namespace App\Tests\User\Integration\InMemory;
 use App\Shared\Infrastructure\InMemory\InMemoryPaginator;
 use App\Tests\User\DummyFactory\DummyUserFactory;
 use App\User\Infrastructure\InMemory\InMemoryUserRepository;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class InMemoryUserRepositoryTest extends KernelTestCase
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testAdd(): void
     {
@@ -29,7 +28,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testRemove(): void
     {
@@ -46,7 +45,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testOfId(): void
     {
@@ -62,7 +61,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testWithPagination(): void
     {
@@ -76,7 +75,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testWithoutPagination(): void
     {
@@ -112,7 +111,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testIteratorWithPagination(): void
     {
@@ -151,7 +150,7 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCount(): void
     {
@@ -170,5 +169,4 @@ final class InMemoryUserRepositoryTest extends KernelTestCase
         static::assertCount(count($users), $repository);
         static::assertCount(2, $repository->withPagination(1, 2));
     }
-
 }

@@ -21,6 +21,7 @@ final readonly class CreateUserProcessor implements ProcessorInterface
         private CommandBusInterface $commandBus,
     ) {
     }
+
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): UserResource
     {
         Assert::isInstanceOf($data, UserResource::class);
@@ -33,10 +34,10 @@ final readonly class CreateUserProcessor implements ProcessorInterface
             new UserUsername($data->username),
             new Email($data->email),
             new Password($data->password),
-            []
+            [],
         );
 
-        /** @var User $model*/
+        /** @var User $model */
         $model = $this->commandBus->dispatch($command);
 
         return UserResource::fromModel($model);

@@ -9,7 +9,6 @@ use App\Shared\Application\Command\CommandInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Throwable;
 
 final class MessengerCommandBus implements CommandBusInterface
 {
@@ -21,14 +20,14 @@ final class MessengerCommandBus implements CommandBusInterface
     }
 
     /**
-     * @throws Throwable
+     * @throws \Throwable
      */
     public function dispatch(CommandInterface $command): mixed
     {
         try {
             return $this->handle($command);
         } catch (HandlerFailedException $e) {
-            /** @var array{0: Throwable} $exceptions */
+            /** @var array{0: \Throwable} $exceptions */
             $exceptions = $e->getNestedExceptions();
 
             throw $exceptions[0];

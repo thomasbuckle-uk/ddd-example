@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\ApiPlatform\Resource;
 
-
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -26,7 +25,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     shortName: 'User',
     operations: [
         // Queries
-
 
         // Commands
 
@@ -53,9 +51,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Delete(
             provider: UserItemProvider::class,
             processor: DeleteUserProcessor::class,
-        )
-
-    ]
+        ),
+    ],
 )]
 final class UserResource
 {
@@ -65,24 +62,22 @@ final class UserResource
 
         #[Assert\NotNull(groups: ['create'])]
         #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
-        public ?string      $username = null,
+        public ?string $username = null,
 
         #[Assert\NotNull(groups: ['create'])]
         #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
-        public ?string      $email = null,
+        public ?string $email = null,
 
         #[Assert\NotNull(groups: ['create'])]
         #[Assert\Length(min: 1, max: 255, groups: ['create', 'Default'])]
-        public ?string      $password = null,
+        public ?string $password = null,
 
-//
-//        TODO Implement roles here
+        //
+        //        TODO Implement roles here
 
         #[Assert\NotNull(groups: ['create'])]
-        public ?array       $roles = []
-
-    )
-    {
+        public ?array $roles = [],
+    ) {
     }
 
     public static function fromModel(User $user): static
@@ -92,7 +87,7 @@ final class UserResource
             $user->username()->value,
             $user->email()->value,
             $user->password()->value,
-            $user->roles()
+            $user->roles(),
         );
     }
 }

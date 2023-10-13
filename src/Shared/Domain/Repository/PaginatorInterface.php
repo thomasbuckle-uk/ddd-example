@@ -12,7 +12,7 @@ use IteratorAggregate;
  *
  * @extends IteratorAggregate<array-key, T>
  */
-interface PaginatorInterface extends IteratorAggregate, Countable
+interface PaginatorInterface extends \IteratorAggregate, Countable
 {
     public function getCurrentPage(): int;
 
