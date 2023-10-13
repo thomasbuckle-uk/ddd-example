@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\User\Domain\Repository\UserRepositoryInterface;
 use App\User\Infrastructure\ApiPlatform\State\Processor\CreateUserProcessor;
+use App\User\Infrastructure\ApiPlatform\State\Processor\DeleteUserProcessor;
+use App\User\Infrastructure\ApiPlatform\State\Processor\UpdateUserProcessor;
 use App\User\Infrastructure\ApiPlatform\State\Provider\UserCollectionProvider;
 use App\User\Infrastructure\ApiPlatform\State\Provider\UserItemProvider;
 use App\User\Infrastructure\Doctrine\DoctrineUserRepository;
@@ -21,6 +23,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     //processors
     $services->set(CreateUserProcessor::class)
+        ->autoconfigure(false)
+        ->tag('api_platform.state_processor', ['priority' => 0]);
+    $services->set(UpdateUserProcessor::class)
+        ->autoconfigure(false)
+        ->tag('api_platform.state_processor', ['priority' => 0]);
+    $services->set(DeleteUserProcessor::class)
         ->autoconfigure(false)
         ->tag('api_platform.state_processor', ['priority' => 0]);
 
