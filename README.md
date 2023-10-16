@@ -29,7 +29,7 @@
 - `make install`
 - `make help` to view all commands such as linters, ci, db management etc
 
-
+- Will have to manually copy across the root.crt from caddy docker volume and add to system & browser trust store in order to gain HTTS support
 
 ---
 
