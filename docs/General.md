@@ -23,3 +23,8 @@ These domains can only communicate with each-other or external services using po
 The benefit of this approach is promoting loose coupling between our component parts as well as the ability to more easily adapt to changing business requirements.
 
 
+---
+
+## General Thoughts 
+
+When to use a VO (domain object) over a primitive? If the concept is important/relevant for the domain, if the concept follows rules from the domain: it's a VO. Otherwise, primitives are good enough. We're still in PHP, not in Java.
