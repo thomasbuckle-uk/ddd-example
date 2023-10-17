@@ -23,6 +23,14 @@ These domains can only communicate with each-other or external services using po
 The benefit of this approach is promoting loose coupling between our component parts as well as the ability to more easily adapt to changing business requirements.
 
 
+## Dependency Inversion Principle
+
+This principle means that high level modules should not depends on low level modules, both should depend on abstractions.
+In our case this means:
+- Code inside infrastructure can depend on an application and domain class
+- Code inside application can depend on domain but not infrastructure 
+- Code inside domain can only depends on itself (and in some small use cases functionality such as using the Ramsey UUID package to make our lives easier)
+
 ---
 
 ## General Thoughts 
