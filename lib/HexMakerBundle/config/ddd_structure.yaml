@@ -1,0 +1,15 @@
+parameters:
+    ddd_structure:
+        bc:
+            path: ./src
+        module:
+            path: {bc}/{module}
+        layers:
+            application:
+                path: {bc}/{module}/Application
+                query:
+                    path: {bc}/{module}/Application/Query
+            domain:
+                path: {bc}/{module}/Domain
+            infrastructure:
+                path: {bc}/{module}/Infrastructure

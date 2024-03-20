@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         // Queries
 
-        // Commands
+        // Command
 
         // Basic CRUD
         new GetCollection(
